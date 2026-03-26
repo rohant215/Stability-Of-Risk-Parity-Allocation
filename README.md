@@ -1,9 +1,5 @@
 # Perturbation Bounds for Risk Parity Allocations under Covariance Estimation Error
 
-**Author:** Rohan Thosar
-**Date:** February 2026
-**Type:** Master's Research Project — Applied Mathematics / Quantitative Finance
-
 ---
 
 ## Overview
