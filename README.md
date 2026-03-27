@@ -13,7 +13,7 @@ regimes, and empirically validating on 17 years of ETF data (2007–2024).
 - [Project Structure](#project-structure)
 - [Data](#data)
 - [Pipeline](#pipeline)
-- [Mathematical Framework] (#mathematical-framework)
+- [Mathematical Framework](#mathematical-framework)
 - [Results](#results)
 - [Figures](#figures)
 - [How to Run](#how-to-run)
