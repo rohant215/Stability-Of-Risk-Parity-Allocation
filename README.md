@@ -85,34 +85,34 @@ because **conditioning rather than sample size is the primary structural driver*
 risk_parity/
 │
 ├── src/
-│   ├── risk_parity.py          Core solver, Jacobian, C(Σ) computation
-│   ├── covariance.py           SPD matrix generation, estimation, shrinkage
-│   └── plotting.py             Shared figure utilities
+│   ├── risk_parity.py          
+│   ├── covariance.py           
+│   └── plotting.py             
 │
 ├── notebooks/
-│   ├── 01_mathematical_setup.ipynb       Section 2: augmented system, IFT
-│   ├── 02_main_theorem.ipynb             Section 3: perturbation bound
-│   ├── 03_instability_regimes.ipynb      Section 4: κ/T heatmaps, T* threshold
-│   ├── 04_two_asset_verification.ipynb   Section 5: closed-form n=2 case
-│   └── 05_empirical_etf.ipynb            Section 7: rolling ETF analysis
+│   ├── 01_mathematical_setup.ipynb     
+│   ├── 02_main_theorem.ipynb            
+│   ├── 03_instability_regimes.ipynb     
+│   ├── 04_two_asset_verification.ipynb  
+│   └── 05_empirical_etf.ipynb           
 │
 ├── scripts/
-│   ├── run_simulations.py       Run all Monte Carlo experiments
-│   └── generate_figures.py      Produce all paper figures
+│   ├── run_simulations.py       
+│   └── generate_figures.py      
 │
 ├── results/
-│   ├── sim_kappa_sweep.csv          C(Σ) vs κ sweep (n=6, T=300)
-│   ├── sim_bound_verification.csv   Empirical vs theoretical bound (n=5, κ=50)
-│   ├── sim_factor_model.csv         Factor model instability (n=10, T=250)
-│   ├── sim_instability_grid.npy     (κ × T) heatmap array (n=8)
-│   ├── sim_kappa_grid.npy           κ values for instability grid
-│   ├── sim_T_grid.npy               T values for instability grid
-│   ├── empirical_results.csv        Rolling κ, C, turnover (2007–2024)
-│   └── weights_history.npy          Rolling RP weights (4336 × 10)
+│   ├── sim_kappa_sweep.csv      
+│   ├── sim_bound_verification.csv 
+│   ├── sim_factor_model.csv       
+│   ├── sim_instability_grid.npy   
+│   ├── sim_kappa_grid.npy         
+│   ├── sim_T_grid.npy             
+│   ├── empirical_results.csv      
+│   └── weights_history.npy        
 │
-├── figures/                     All 14 output figures (PNG, 300dpi)
-├── requirements.txt
-└── README.md
+├── figures/                     
+└──  requirements.txt
+
 ```
 
 ---
