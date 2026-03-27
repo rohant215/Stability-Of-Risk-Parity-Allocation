@@ -13,6 +13,7 @@ regimes, and empirically validating on 17 years of ETF data (2007–2024).
 - [Project Structure](#project-structure)
 - [Data](#data)
 - [Pipeline](#pipeline)
+- [Mathematical Framework] (#mathematical-framework)
 - [Results](#results)
 - [Figures](#figures)
 - [How to Run](#how-to-run)
@@ -186,6 +187,65 @@ Run `notebooks/05_empirical_etf.ipynb` to reproduce the ETF results.
     Output: results/empirical_results.csv
              results/weights_history.npy
              figures/fig11– fig14
+```
+
+---
+
+## Mathematical Framework
+
+### Risk Parity as an Implicit System
+
+Given weights w ∈ ℝⁿ and SPD covariance matrix Σ, portfolio volatility is σ_p = √(wᵀΣw). The risk contribution of asset i is:
+
+```
+RC_i(w, Σ) = w_i · (Σw)_i / σ_p
+```
+
+Risk parity requires RC₁ = RC₂ = ··· = RC_n together with Σᵢwᵢ = 1. Introducing a Lagrange multiplier λ yields the augmented system G(z, Σ) = 0 where z = (w, λ) ∈ ℝⁿ⁺¹:
+
+```
+G_i(z, Σ) = w_i(Σw)_i − λ = 0,   i = 1,…,n
+G_{n+1}(z, Σ) = 1ᵀw − 1 = 0
+```
+
+At a solution, λ equals the common risk contribution — it has a direct financial interpretation as the equal risk budget per asset.
+
+### The Augmented Jacobian
+
+The (n+1)×(n+1) Jacobian H = ∂G/∂z takes the block form:
+
+```
+H = [ J   | −1 ]
+    [ 1ᵀ  |  0 ]
+```
+
+where J_ij = w_i · Σ_ij + δ_ij · (Σw)_i. Provided H is nonsingular at the solution, the Implicit Function Theorem guarantees that w\* depends smoothly on Σ, and the first-order perturbation satisfies:
+
+```
+δz ≈ −H⁻¹ · (∂G/∂Σ)[E]
+```
+
+### The Stability Constant C(Σ)
+
+Taking norms yields the main bound ‖δw‖ ≤ C(Σ) · ‖E‖, where:
+
+```
+C(Σ) = ‖H⁻¹‖ · ‖∂G/∂Σ‖
+```
+
+- **‖H⁻¹‖** is the spectral norm of the inverse Jacobian — large when H is ill-conditioned
+- **‖∂G/∂Σ‖** is bounded above by max(w\*) · ‖w\*‖₂
+
+Since estimation error scales as ‖E‖ ~ O(√(n/T)) by the Marchenko-Pastur law, the bound implies:
+
+```
+E[‖ŵ − w*‖] ≤ C(Σ) · √(n/T)
+```
+
+The minimum sample size to achieve stability tolerance ε is therefore:
+
+```
+T*(ε) = ⌈n · C(Σ)² / ε²⌉
 ```
 
 ---
